@@ -129,3 +129,142 @@ Final max-heap:
 A max-heap is a complete binary tree where every parent node is greater than or equal to its children, making it ideal for efficiently finding and removing the largest element. The priority queue implementation in Java can be adapted to function as a max-heap using a custom comparator. The insertion and deletion operations maintain the heap property, ensuring the structure remains a valid max-heap.
 
 
+**Java Example**
+
+**MaxHeap.java**
+```
+import java.util.Arrays;
+
+public class MaxHeap {
+    private int[] heap;
+    private int size;
+    private int capacity;
+
+    public MaxHeap(int capacity) {
+        this.capacity = capacity;
+        this.size = 0;
+        heap = new int[capacity];
+    }
+
+    private int parent(int index) {
+        return (index - 1) / 2;
+    }
+
+    private int leftChild(int index) {
+        return 2 * index + 1;
+    }
+
+    private int rightChild(int index) {
+        return 2 * index + 2;
+    }
+
+    private void swap(int index1, int index2) {
+        int temp = heap[index1];
+        heap[index1] = heap[index2];
+        heap[index2] = temp;
+    }
+
+    private void ensureExtraCapacity() {
+        if (size == capacity) {
+            heap = Arrays.copyOf(heap, capacity * 2);
+            capacity *= 2;
+        }
+    }
+
+    public void insert(int key) {
+        ensureExtraCapacity();
+        heap[size] = key;
+        size++;
+        heapifyUp(size - 1);
+    }
+
+    private void heapifyUp(int index) {
+        while (index != 0 && heap[parent(index)] < heap[index]) {
+            swap(index, parent(index));
+            index = parent(index);
+        }
+    }
+
+    public int extractMax() {
+        if (size == 0) throw new IllegalStateException("Heap is empty");
+        int max = heap[0];
+        heap[0] = heap[size - 1];
+        size--;
+        heapifyDown(0);
+        return max;
+    }
+
+    private void heapifyDown(int index) {
+        int largest = index;
+        int left = leftChild(index);
+        int right = rightChild(index);
+
+        if (left < size && heap[left] > heap[largest]) {
+            largest = left;
+        }
+
+        if (right < size && heap[right] > heap[largest]) {
+            largest = right;
+        }
+
+        if (largest != index) {
+            swap(index, largest);
+            heapifyDown(largest);
+        }
+    }
+
+    public int getMax() {
+        if (size == 0) throw new IllegalStateException("Heap is empty");
+        return heap[0];
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    public static void main(String[] args) {
+        MaxHeap maxHeap = new MaxHeap(10);
+        maxHeap.insert(3);
+        maxHeap.insert(10);
+        maxHeap.insert(5);
+        maxHeap.insert(6);
+        maxHeap.insert(2);
+
+        System.out.println("Max value: " + maxHeap.getMax()); // Should print 10
+        System.out.println("Extracted max value: " + maxHeap.extractMax()); // Should print 10
+        System.out.println("Max value after extraction: " + maxHeap.getMax()); // Should print 6
+    }
+}
+
+```
+### Explanation
+
+1. **Class Definition**:
+    
+    - The `MaxHeap` class defines the structure and methods for the max heap.
+2. **Constructor**:
+    
+    - Initializes the heap with a given capacity.
+3. **Helper Methods**:
+    
+    - `parent(int index)`: Returns the parent index of the given index.
+    - `leftChild(int index)`: Returns the left child index of the given index.
+    - `rightChild(int index)`: Returns the right child index of the given index.
+    - `swap(int index1, int index2)`: Swaps the elements at the given indices.
+    - `ensureExtraCapacity()`: Doubles the array size if the heap is full.
+4. **Main Operations**:
+    
+    - `insert(int key)`: Inserts a new element into the heap.
+    - `heapifyUp(int index)`: Ensures the heap property is maintained after insertion.
+    - `extractMax()`: Removes and returns the maximum element from the heap.
+    - `heapifyDown(int index)`: Ensures the heap property is maintained after extraction.
+    - `getMax()`: Returns the maximum element without removing it.
+    - `getSize()`: Returns the current size of the heap.
+    - `isEmpty()`: Checks if the heap is empty.
+5. **Main Method**:
+    
+    - Demonstrates the usage of the `MaxHeap` class by performing some basic operations.
