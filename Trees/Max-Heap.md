@@ -132,7 +132,7 @@ A max-heap is a complete binary tree where every parent node is greater than or 
 **Java Example**
 
 **MaxHeap.java**
-```
+```java
 import java.util.Arrays;
 
 public class MaxHeap {
