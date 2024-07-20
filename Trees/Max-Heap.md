@@ -88,28 +88,28 @@ Array Representation: 10,9,8,7,6,5,4,3,2,1
 Let's insert `11` into the max-heap:
 
 1. Add `11` at the end of the array: 10,9,8,7,6,5,4,3,2,1,11
-2. Bubble up: Compare `11` with its parent `4` and swap: 10,9,8,7,6,5,11,3,2,1,4
-3. Continue to bubble up: Compare `11` with its parent `8` and swap: 10,9,11,7,6,5,8,3,2,1,4
-4. Continue to bubble up: Compare `11` with its parent `10` and swap: 11,9,10,7,6,5,8,3,2,1,4
+2. Bubble up: Compare `11` with its parent `6` and swap: 10,9,8,7,11,5,4,3,2,1,6
+3. Continue to bubble up: Compare `11` with its parent `9` and swap: 10,11,8,7,9,5,4,3,2,1,6
+4. Continue to bubble up: Compare `11` with its parent `10` and swap: 11,10,8,7,9,5,4,3,2,1,6
 
 Final max-heap:
 ```
        11
       /  \
-     9    10
-    / \  / \
-   7  6  5  8
-  / \ / \ /
- 3  2 1 4
+     10    8
+    / \   / \
+   7   9  5  4
+  / \ / \ 
+ 3  2 1 6
    
 ```
 **Deletion Example:**
 
 Let's remove the max element `11`:
 
-1. Remove `11` and replace it with the last element `4`: 4,9,10,7,6,5,8,3,2,1
-2. Bubble down: Compare `4` with its children `9` and `10`, and swap with `10` (the larger child): 10,9,4,7,6,5,8,3,2,1
-3. Continue to bubble down: Compare `4` with its children `5` and `8`, and swap with `8`: 10,9,8,7,6,5,4,3,2,1
+1. Remove `11` and replace it with the last element `6`: 6,10,8,7,9,5,4,3,2,1
+2. Bubble down: Compare `6` with its children `10` and `8`, and swap with `10` (the larger child): 10,6,8,7,9,5,4,3,2,1
+3. Continue to bubble down: Compare `6` with its children `7` and `9`, and swap with `9`: 10,9,8,7,6,5,4,3,2,1
 
 Final max-heap:
 
@@ -127,3 +127,5 @@ Final max-heap:
 ### Conclusion
 
 A max-heap is a complete binary tree where every parent node is greater than or equal to its children, making it ideal for efficiently finding and removing the largest element. The priority queue implementation in Java can be adapted to function as a max-heap using a custom comparator. The insertion and deletion operations maintain the heap property, ensuring the structure remains a valid max-heap.
+
+
