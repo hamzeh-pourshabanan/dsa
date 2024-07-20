@@ -6,8 +6,8 @@ A **Max-Heap** is a complete binary tree where each node is greater than or equa
 
 1. **Complete Binary Tree**: All levels are fully filled except possibly for the last level, which is filled from left to right.
 2. **Heap Property**: Every parent node has a value greater than or equal to its children. Formally, for every node iii:
-    - A[i]≥A[2i+1]A[i] \geq A[2i + 1]A[i]≥A[2i+1] (if the left child exists)
-    - A[i]≥A[2i+2]A[i] \geq A[2i + 2]A[i]≥A[2i+2] (if the right child exists)
+    - A[i] ≥ A[2i+1]   (if the left child exists)
+    - A[i] ≥ A[2i+2]  (if the right child exists)
 
 #### Operations on Max-Heap:
 
