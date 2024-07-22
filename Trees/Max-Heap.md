@@ -73,9 +73,9 @@ Here is the visual representation of the max-heap:
 
 A max-heap can be efficiently represented using an array. The parent-child relationship can be derived from the indices of the array:
 
-- Parent of node at index iii is at index ⌊i−12⌋\left\lfloor \frac{i-1}{2} \right\rfloor⌊2i−1​⌋
-- Left child of node at index iii is at index 2i+12i + 12i+1
-- Right child of node at index iii is at index 2i+22i + 22i+2
+- Parent of node at index iii is at index (i - 1) / 2
+- Left child of node at index iii is at index (2i + 1)
+- Right child of node at index iii is at index (2i + 2)
 
 For the given example:
 
